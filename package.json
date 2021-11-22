@@ -4,11 +4,10 @@
   "description": "Servidor PQR ",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "cd cliente && npm install --only=dev && npm install && npm run build"
+    "start": "node index"
   },
   "engines": {
-    "node": "8.9.2"
+    "node": ">=12.9.0"
   },
 
   "author": "Juan Felipe Londoño",
