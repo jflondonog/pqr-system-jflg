@@ -1,0 +1,40 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo"> CREAR SOLICITUD</span>
+                    <form class="mt-3" [formGroup]="solicitudForm" (ngSubmit)="agregarSolicitud()">
+                        <div class="mb-3">
+                            <select class="form-select" formControlName="type">
+                                <option value="" disabled selected>Seleccione el tipo de solicitud</option>
+                                <option value = "P">Petición</option>
+                                <option value = "Q">Queja</option>
+                            </select>
+                            <div class="text-danger" *ngIf="solicitudForm.get('type')?.hasError('required') && solicitudForm.get('type')?.touched">
+                                <span>El tipo de solicitud <strong>es obligatorio</strong></span>
+                            </div>
+                           </div> 
+                        <div class="mb-3">
+                            <input type="text" class="form-control mt-3" placeholder="Asunto" formControlName="subject">
+                            <div class="text-danger" *ngIf="solicitudForm.get('subject')?.hasError('required') && solicitudForm.get('subject')?.touched">
+                                <span>El asunto <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea type="text" class="form-control mt-3" placeholder="Descripción" rows="6" formControlName="description"></textarea>
+                            <div class="text-danger" *ngIf="solicitudForm.get('description')?.hasError('required') && solicitudForm.get('description')?.touched">
+                                <span>La descripción <strong>es obligatoria</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button routerLink="/" class="btn btn-secondary btn-lg float-start">REGRESAR</button>
+                            <button type="submit" [disabled]="solicitudForm.invalid" class="btn btn-success btn-lg float-end">CONFIRMAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

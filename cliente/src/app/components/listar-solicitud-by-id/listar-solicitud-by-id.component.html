@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-9 offset-lg-2 col-rg=9 offset-rg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">SOLICITUD DE {{sol.user | uppercase}}</span>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                              <th scope="col">TIPO</th>
+                              <th scope="col">ASUNTO</th>
+                              <th scope="col">DESCRIPCIÓN</th>
+                              <th scope="col">ESTADO</th>
+                              <th scope="col">RESPUESTA</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td>{{sol.details.solicitud.type}}</td>
+                                <td>{{sol.details.solicitud.subject}}</td>
+                                <td>{{sol.details.solicitud.description}}</td>
+                                <td *ngIf="sol.details.solicitud.status == false"><i class="fas fa-eye-slash text-danger"></i></td>
+                                <td *ngIf="sol.details.solicitud.status == true"><i class="fas fa-eye text-success"></i></td>
+                                <td>{{sol.details.reply.description}}</td>
+                                <td>
+                                    <i class="fas fa-thumbs-up text-success" *ngIf="sol.details.reply.description != ''" (click)="actualizarSatisfaccion(sol._id, true)"></i>
+                                    <i class="fas fa-thumbs-down text-danger" *ngIf="sol.details.reply.description != ''" (click)="actualizarSatisfaccion(sol._id, false)">     
+                                    </i>
+                                </td>
+                            </tr>
+                          </tbody>
+                    </table>
+                    <div class="mb-3">
+                        <button routerLink="/" class="btn btn-secondary btn-lg float-start">REGRESAR</button>
+                        <button type="submit" routerLink="/crear-reclamo/{{sol._id}}" class="btn btn-success btn-lg float-end" [disabled]="boton==true">CREAR RECLAMO</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3" *ngIf="sol.claim.claim.subject != ''">
+                <div class="card-body text-center">
+                    <span class="titulo2">RECLAMO</span>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                            <th scope="col">ASUNTO</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col">RESPUESTA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{sol.claim.claim.subject}}</td>
+                                <td>{{sol.claim.claim.description}}</td>
+                                <td *ngIf="sol.details.solicitud.status == false"><i class="fas fa-eye-slash text-danger"></i></td>
+                                <td *ngIf="sol.details.solicitud.status == true"><i class="fas fa-eye text-success"></i></td>
+                                <td>{{sol.claim.reply.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
